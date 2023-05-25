@@ -8,13 +8,9 @@ pip install --target=d:\path [packagename] #安装到指定位置
 
 pip --default-timeout=100 install [packagename] #指定延时时间
 
-
-
 ## 卸载
 
 pip uninstall [packagename]
-
-
 
 ## 更新
 
@@ -23,8 +19,6 @@ pip install --upgrade [packagename]
 ## 升级pip
 
 pip install -U pip
-
-
 
 ## 查看已安装的包
 
@@ -56,4 +50,4 @@ pip wheel [包名]
 
 安装requirements.txt依赖： pip install -r requirements.txt
 
-
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r .\requirements.txt
