@@ -32,13 +32,26 @@ docker run hello-world
 然后在终端执行 lazydocker  （sudo chmod +x）加下权限
 
 ## docker compose 安装
+
 参考链接 https://docs.docker.com/compose/install/linux/
+
 ```shell
 sudo curl -SL https://github.com/docker/compose/releases/download/v2.13.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
 
 sudo chmod +x /usr/local/bin/docker-compose
 ```
+
 启动
+
 ```shell
 docker-compose -f docker-compose.yaml up -d
 ```
+
+修改源
+
+{
+    "registry-mirrors":[
+      "https://hub-mirror.c.163.com",
+      "https://docker.mirrirs.ustc.edu.cn"
+    ]
+}
