@@ -1,9 +1,13 @@
 ## ubuntu静态IP配置
 
+virtualbox网卡选择桥接模式，网卡选择正在使用的（同一个局域网的网卡，使用有线网卡选有线，使用WIFI选WIFI网卡）
+
 ```shell
 sudo vim /etc/netplan/00-installer-config.yaml
 ```
+
 修改为以下内容
+
 ```shell
 network:
   ethernets:
@@ -21,10 +25,14 @@ network:
 
 保存
 验证 IP 方案正确性  
+
 ```shell
 sudo netplan try
 ```
+
 应用 IP 方案
+
 ```shell
 sudo netplan apply
 ```
+

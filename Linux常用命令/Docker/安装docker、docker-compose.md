@@ -49,9 +49,13 @@ docker-compose -f docker-compose.yaml up -d
 
 修改源
 
+sudo vim /etc/docker/daemon.json
+
 {
     "registry-mirrors":[
       "https://hub-mirror.c.163.com",
       "https://docker.mirrirs.ustc.edu.cn"
     ]
 }
+
+sudo service docker restart
