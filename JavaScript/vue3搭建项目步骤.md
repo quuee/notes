@@ -16,19 +16,20 @@ npm install 和 npm i 是一样
 
 ### 一、设置npm源为腾讯云地址
 
-```
+```shell
 npm config set registry http://mirrors.cloud.tencent.com/npm/
 ```
 
 ### 二、创建项目
-
-`npm create vite@latest my-video-app -- --template vue-ts`
+```shell
+npm create vite@latest my-video-app -- --template vue-ts
+```
 
 ### 三、引入依赖
 
 1、element-plus
 
-```
+```shell
 npm install element-plus --save
 ```
 
@@ -36,13 +37,13 @@ npm install element-plus --save
 
 需要安装`unplugin-vue-components` 和 `unplugin-auto-import`这两款插件
 
-```
+```shell
 npm install -D unplugin-vue-components unplugin-auto-import
 ```
 
 ##### Vite[#](https://element-plus.gitee.io/zh-CN/guide/quickstart.html#vite)
 
-```
+```typeScript
 // vite.config.ts
 import { defineConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -68,11 +69,11 @@ export default defineConfig({
 加载的环境变量会通过 import.meta.env 以字符串形式暴露给客户端源码
 在vite.config.ts中无法使用，需要loadEnv方法。
 process.cwd() process 未定义则安装@types/node
-```
+```shell
 npm i --save-dev @types/node
 ```
 如下
-```
+```typeScript
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -115,21 +116,23 @@ export default (({ command, mode, ssrBuild }) => {
 
 4、安装vue-router
 
-```
+```shell
 npm install vue-router -S
 ```
 路由配置
 
 5、安装pipina
-```
+```shell
 npm install pinia
 ```
 
 6、scss
+```shell
 npm install sass sass-loader --save-dev
-
-5、安装axios
 ```
+
+7、安装axios
+```shell
 npm install axios -S
 ```
 axiosInstance.ts
@@ -139,7 +142,9 @@ import { useUserStore } from '../store/userStore'
 // import { Message } from 'element-plus'
 
 const axiosInstance: AxiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_BASR_URL,
+    //baseURL: import.meta.env.VITE_BASR_URL,
+    //如果跨域 只需加/api
+    baseURL:"/api"
     timeout: 30 * 1000,
     headers: {
         "Content-Type": "application/json;charset=UTF-8",
@@ -217,7 +222,37 @@ export async function del<T>(url: string, params?: any): Promise<ApiResult<T>> {
 }
 
 ```
+8、路径别名
+```shell
+npm i path -S
+npm i @types/node -D
+```
+vite.config.ts 文件中添加
+```typeScript
+import path from "path"
 
-定义请求工具
+return defineConfig({
+  plugins:[vue()],
+  resolve:{
+    alias:{
+      "@":path.resolve(__dirname,"./src")
+    }
+  }
+})
 
-6、封装crud通用hook
+```
+tsconfig.json文件添加
+```typeScript
+{
+  "compilerOptions": {
+    /* 配置@ */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}
+
+```
+
+9、封装crud通用hook
