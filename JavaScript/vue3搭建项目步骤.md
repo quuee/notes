@@ -63,6 +63,9 @@ export default defineConfig({
   ],
 })
 ```
+(其实按需引入有坑, 在main.ts文件里 import 'element-plus/dist/index.css')
+
+el-icon也不能用
 
 3、环境变量
 创建.env.[mode]
