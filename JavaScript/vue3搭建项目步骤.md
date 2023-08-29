@@ -37,35 +37,77 @@ npm install element-plus --save
 
 需要安装`unplugin-vue-components` 和 `unplugin-auto-import`这两款插件
 
+icon 需要安装 unplugin-icons
+
 ```shell
-npm install -D unplugin-vue-components unplugin-auto-import
+npm install -D unplugin-vue-components unplugin-auto-import unplugin-icons
 ```
 
 ##### Vite[#](https://element-plus.gitee.io/zh-CN/guide/quickstart.html#vite)
 
 ```typeScript
 // vite.config.ts
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
+import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
+import { resolve } from "path"
+
+const pathSrc = resolve(__dirname, './src')
 
 export default defineConfig({
   // ...
   plugins: [
     // ...
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        ElementPlusResolver(),
+        // 自动导入图标组件
+          IconsResolver({
+            prefix: 'Icon',
+          }),
+      ],
+      dts: resolve(pathSrc, 'auto-imports.d.ts'),
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        ElementPlusResolver(),
+        // 自动注册图标组件
+        IconsResolver({
+          enabledCollections: ['ep'],
+        }),
+      ],
+      dts: resolve(pathSrc, 'components.d.ts'),
+    }),
+    Icons({
+      autoInstall: true,
+      compiler: "vue3", //编译方式 'vue2', 'vue3', 'jsx'
+      // scale: 1.2, // 缩放
+      // defaultStyle: '', // 默认样式
+      // defaultClass: '', // 默认类名
+      // jsx: 'react' // 'react' or 'preact
     }),
   ],
 })
 ```
 (其实按需引入有坑, 在main.ts文件里 import 'element-plus/dist/index.css')
 
-el-icon也不能用
+el-icons使用方式
+```html
+<i-ep-user></i-ep-user>
+
+<el-form-item label="用户名:" prop="username">
+  <el-input v-model="loginForm.username" placeholder="请输入用户名" >
+      <template #suffix>
+          <i-ep-user></i-ep-user>
+      </template>
+  </el-input>
+</el-form-item>
+```
+启动时会自动安装@iconify-json/ep这个库
 
 3、环境变量
 创建.env.[mode]
