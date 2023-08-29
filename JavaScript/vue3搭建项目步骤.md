@@ -77,13 +77,15 @@ export default defineConfig({
         ElementPlusResolver(),
         // 自动注册图标组件
         IconsResolver({
-          enabledCollections: ['ep'],
+          // 修改Icon组件前缀，不设置则默认为i,禁用则设置为false
+          // prefix: 'icon',
+          enabledCollections: ['ep'], // 指定collection，即指定为elementplus图标集ep
         }),
       ],
       dts: resolve(pathSrc, 'components.d.ts'),
     }),
     Icons({
-      autoInstall: true,
+      autoInstall: true, // Icons图标自动下载
       compiler: "vue3", //编译方式 'vue2', 'vue3', 'jsx'
       // scale: 1.2, // 缩放
       // defaultStyle: '', // 默认样式
