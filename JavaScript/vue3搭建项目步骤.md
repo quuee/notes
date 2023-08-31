@@ -110,6 +110,7 @@ el-icons使用方式
 </el-form-item>
 ```
 启动时会自动安装@iconify-json/ep这个库
+动态加载icon component不会显示动态icon。解释：在 <script setup> 中要使用动态组件时，需要直接用 :is="Component" 直接绑定到组件本身，而不是字符串的组件名。解决办法：自定义自己的icon组件，或者不使用自动导入
 
 3、环境变量
 创建.env.[mode]

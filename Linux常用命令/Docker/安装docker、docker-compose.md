@@ -46,21 +46,3 @@ sudo chmod +x /usr/local/bin/docker-compose
 ```shell
 docker-compose -f docker-compose.yaml up -d
 ```
-
-修改源
-
-sudo vim /etc/docker/daemon.json
-```shell
-{
-    "registry-mirrors": [
-        "https://registry.hub.docker.com",
-        "http://hub-mirror.c.163.com",
-        "https://docker.mirrors.ustc.edu.cn",
-        "https://registry.docker-cn.com"
-    ]
-}
-
-sudo service docker restart
-```
-
-
