@@ -12,4 +12,4 @@ Docker Daemon从Dockerfile中顺序读取指令，生成一个临时容器，在
 在Dockerfile同级目录下添加一个 .dockerignore 文件
 
 ## dockerfile指令图
-[dockerfile指令图](./dockerfile-option.png)
+![dockerfile指令图](./dockerfile-option.png)
