@@ -47,7 +47,6 @@ public class MeiliSearchConfig {
         return index;
     }
 }
-
 ```
 
 ##### 列出索引
@@ -55,8 +54,6 @@ public class MeiliSearchConfig {
 ##### 更新索引
 
 ##### 删除索引
-
-
 
 #### 文档操作
 
@@ -77,15 +74,11 @@ String s = objectMapper.writeValueAsString(list);
 index.addDocuments(s);
 ```
 
- 
-
 ##### 更新文档
 
 ##### 删除文档
 
 ##### 删除索引下全部文档
-
-
 
 #### 查询操作
 
