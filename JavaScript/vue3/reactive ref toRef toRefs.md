@@ -4,7 +4,7 @@
 
 reactive方法 根据传入的对象 ，创建返回一个深度响应式对象。响应式对象看起来和传入的对象一样，但是，响应式对象属性值改动，不管层级有多深，都会触发响应式。新增和删除属性也会触发响应式。
 reactive 只能 给对象添加响应式，对于值类型，比如String，Number，Boolean，Symbol无能为力。
-不能通过 ...state 方式结构，这样会丢失响应式。
+赋值： form.username = username
 
 ### ref
 
