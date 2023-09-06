@@ -12,5 +12,8 @@ sudo vim /etc/docker/daemon.json
     ]
 }
 
-sudo service docker restart
+sudo service docker restart 或 systemctl restart docker
+
 ```
+查看
+docker info
