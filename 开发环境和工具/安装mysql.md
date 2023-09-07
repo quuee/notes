@@ -25,7 +25,7 @@ scp sky@192.168.2.13:/home/sky/bak.sql c:/Users/x    #从linux到win
 scp c:/Users/x/bak.sql sky@192.168.2.12:/home/sky    #从win到linux
 docker exec -it [容器] /bin/bash  #进入容器
 mysql -uroot -p123456  # 登录mysql
-show databasese;
+show databases;
 use [数据库];
 source /home/bak.sql;
 ```
