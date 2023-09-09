@@ -17,8 +17,18 @@ apt list --installed | grep your_program_name
 snap list
 dpkg-query -l
 
+pip show pandas
+
 ## 卸载
 sudo apt-get remove package_name
 sudo apt-get --purge remove package_name
 
 sudo apt autoremove
+
+
+## wps缺少字体
+下载字体解压放到 /usr/share/fonts/wps-fonts 下
+sudo mkfontscale
+sudo mkfontdir
+sudo fc-cache
+启动wps
