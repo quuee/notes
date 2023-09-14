@@ -15,3 +15,16 @@ public class AffirmativeBased extends AbstractAccessDecisionManager {
 (使用spring权限注解要写正确的el表达式)
 
 #### 自定义权限检验
+
+
+## WebSecurity与HttpSecurity
+```java
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+//        SecurityFilterChain 可能有多个，WebSecurityCustomizer是定义全局的
+        return (web) -> web.ignoring()
+                .requestMatchers("/static/**","/doc.html","/doc.html#/**","/webjars/**","/favicon.ico","/v3/api-docs/**");
+    }
+
+```

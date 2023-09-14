@@ -79,7 +79,7 @@ docker run [选项] image
 
 --add-host www.abc.com:1.1.1.1, 手动往容器的/etc/host 文件注入主机名到ip地址映射
 
-# 
+
 
 ## 网络
 
@@ -89,4 +89,30 @@ docker run [选项] image
 
 ## 其他命令
 
-查看容器信息：docker inspect [容器]
+### 查看容器信息
+docker inspect [容器]
+### 时间同步
+1、
+```
+docker run -v /etc/localtime:/etc/localtime:ro 
+```
+2、
+```dockerfile
+ENV TimeZone=Asia/Shanghai 
+RUN ln -snf /usr/share/zoneinfo/$TimeZone /etc/localtime && echo $TimeZone > /etc/timezone 
+
+# CentOS
+RUN echo "Asia/shanghai" > /etc/timezone
+# Ubuntu
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+3、docker compose
+```docker-compose
+environment:
+  TZ: Asia/Shanghai
+```
+4、
+```shell
+docker cp /etc/localtime 【容器ID或者NAME】:/etc/localtime
+docker cp -L /usr/share/zoneinfo/Asia/Shanghai 【容器ID或者NAME】:/etc/localtime
+```

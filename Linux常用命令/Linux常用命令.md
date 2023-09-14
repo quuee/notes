@@ -13,15 +13,15 @@ df -h
 ## 查看所有安装的软件
 dpkg --list
 apt list --installed
-apt list --installed | grep your_program_name
+apt list --installed | grep [your_program_name[]
 snap list
 dpkg-query -l
 
 pip show pandas
 
 ## 卸载
-sudo apt-get remove package_name
-sudo apt-get --purge remove package_name
+sudo apt-get remove [package_name]
+sudo apt-get --purge remove [package_name]
 
 sudo apt autoremove
 
