@@ -14,7 +14,7 @@ df -h
 dpkg --list
 apt list --installed
 apt list --installed | grep [your_program_name[]
-snap list
+snap list --all
 dpkg-query -l
 
 pip show pandas
@@ -22,8 +22,18 @@ pip show pandas
 ## 卸载
 sudo apt-get remove [package_name]
 sudo apt-get --purge remove [package_name]
-
 sudo apt autoremove
+
+```shell
+#!/bin/bash
+# Removes old revisions of snaps
+# CLOSE ALL SNAPS BEFORE RUNNING THIS
+set -eu
+snap list --all | awk '/disabled/{print $1, $3}' |
+    while read snapname revision; do
+        snap remove "$snapname" --revision="$revision"
+    done
+```
 
 
 ## wps缺少字体

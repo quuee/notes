@@ -4,7 +4,7 @@ computed是有缓存的，method每次都会执行。
 
 ### watch
 
-如果要对对象中的属性进行监听，需要加deep:true。
+如果要对对象中的属性进行监听，需要加deep:true,immediate:true
 
 ### v-show和v-if区别
 
@@ -41,24 +41,97 @@ v-on，简写用“@”；v-bind，简写用“:”；v-slot简写用“#”
 
 Vue父子组件生命周期执行顺序：父组件先创建，然后子组件创建；子组件先挂载，然后父组件挂载，即“父beforeCreate-> 父create -> 子beforeCreate-> 子created -> 子mounted -> 父mounted”。
 
-### emits，将子组件的方法暴露给父组件使用
+### emits 
+#### 1、子组件向父组件（向上）事件传递（以及传递参数）
+```vue
+// 父组件
+<template>
+ <Child  @success="success"></Child>
+</template>
+<script setup>
+function success (e,param2) {
+  console.log(e,param2)
+}
+</script>
 
-子组件son.vue
+//子组件
+<template>
+ <button @click="handleClick">点击按钮</button>
+</template>
+<script setup>
+import { defineEmits } from "vue"
+const emits = defineEmits(['success'])
+function handleClick () {
+  emits("success", "子组件向父组件传递数据","参数2")
+}
+</script>
 
-```html
-<button @click=''>add</button>
+```
+#### 2、子组件修改父组件的props，需要父组件提供方法
+
+```vue
+// 子组件son.vue  
+<button @click='emit("sonAdd")'>add</button>
 <script setup lang='ts'>
     const emit = defineEmits(['sonAdd'])
 </script>
-```
 
-父组件
-
-```html
+// 父组件  
 <script setup lang='ts'>
     import sonbutton from './son'
 </script>
 <template>
     <sonbutton @sonAdd='()=>{count++}'></sonbutton>
 </template>
+```
+
+### defineProps - 组件之间传值
+```vue
+// 父组件
+<template>
+  <Child :val="val"></Child>
+</template>
+
+// 子组件
+<script setup>
+import { defineEmits } from "vue"
+const props = defineProps({
+  val: {
+    type: String,
+    default: ""
+  }
+})
+</script>
+
+```
+
+### defineExpose - 子组件暴露自己的属性或方法
+```vue
+// 父组件
+<template>
+  <Child ref="RefChildExpose"></Child>
+  <button @click="touchButton">点击使用子组件</button>
+</template>
+<script setup>
+const RefChildExpose = ref(null)
+function touchButton () {
+  // 使用子组件方法
+  RefChildExpose.value.show()
+  // 输出子组件属性
+  console.log(RefChildExpose.value.count)
+}
+</script>
+
+// 子组件
+<script setup>
+import { defineExpose } from "vue"
+function show () {
+  console.log('显示')
+}
+defineExpose({
+  show,
+  count: 1
+})
+</script>
+
 ```
