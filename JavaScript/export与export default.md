@@ -6,5 +6,10 @@
 - (1) 输出单个值，使用export default
 
 - (2) 输出多个值，使用export
+```typescript
+export {
+    xxx
+}
+```
 
 - (3) export default与普通的export不要同时使用
