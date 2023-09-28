@@ -42,3 +42,9 @@ sudo mkfontscale
 sudo mkfontdir
 sudo fc-cache
 启动wps
+
+## debian su root密码正确，sudo 密码错误 xx用户不在sudoers里
+1 su root
+2 gnome-text-editor /etc/sudoers
+3 xx ALL=(ALL) ALL #xx是用户名，添加
+4 退出后验证ok
