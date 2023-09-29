@@ -28,10 +28,18 @@ newgrp docker
 docker run hello-world
 ```
 ## 镜像源
+/etc/docker/daemon.json
 ```json
 {
   "registry-mirrors": [
-    "https://docker.mirrors.ustc.edu.cn"
+    "https://docker.m.daocloud.io",
+    "https://dockerproxy.com",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://docker.nju.edu.cn",
+    "https://hub-mirror.c.163.com",
+    "https://mirror.baidubce.com",
+    "https://docker.nju.edu.cn",
+    
   ],
   "max-concurrent-downloads": 10,
   "insecure-registries": [],
