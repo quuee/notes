@@ -1,11 +1,13 @@
 ## docker 安装（脚本）
 
+github 搜索 docker install
+
 ```shell
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-卸载
+## 卸载
 
 ```shell
 sudo apt-get purge docker-ce docker-ce-cli containerd.io
@@ -24,6 +26,22 @@ sudo usermod -aG docker $USER
 newgrp docker 
 # 验证
 docker run hello-world
+```
+## 镜像源
+```json
+{
+  "registry-mirrors": [
+    "https://docker.mirrors.ustc.edu.cn"
+  ],
+  "max-concurrent-downloads": 10,
+  "insecure-registries": [],
+  "debug": true,
+  "experimental": false,
+  "features": {
+    "buildkit": true
+  }
+}
+
 ```
 
 ## 安装docker管理工具 lazydocker
