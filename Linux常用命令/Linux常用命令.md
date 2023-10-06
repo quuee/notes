@@ -38,6 +38,7 @@ snap list --all | awk '/disabled/{print $1, $3}' |
 
 ## wps缺少字体
 下载字体解压放到 /usr/share/fonts/wps-fonts 下
+sudo cp * /usr/share/fonts/
 sudo mkfontscale
 sudo mkfontdir
 sudo fc-cache

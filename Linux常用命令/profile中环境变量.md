@@ -7,11 +7,11 @@ export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lob/tools.jar
 
 #node
-export NODE_PATH=/opt/node-v18.17.1-linux-x64
+export NODE_PATH=/opt/node-v18.17.1
 export PATH=$NODE_PATH/bin:$PATH
 
 #maven
-export MAVEN_HOME=/opt/apache-maven-3.9.4
+export MAVEN_HOME=/opt/maven-3.9.4
 export PATH=$MAVEN_HOME/bin:$PATH
 
 #flutter
