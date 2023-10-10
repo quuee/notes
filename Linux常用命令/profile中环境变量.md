@@ -17,6 +17,9 @@ export PATH=$MAVEN_HOME/bin:$PATH
 #flutter
 export FLUTTER_HOME=/opt/flutter_3.13.4
 export PATH=$FLUTTER_HOME/bin:$PATH
+## flutter pub 换七牛云
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
 ```
 

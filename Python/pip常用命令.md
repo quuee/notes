@@ -8,6 +8,8 @@ pip install --target=d:\path [packagename] #安装到指定位置
 
 pip --default-timeout=100 install [packagename] #指定延时时间
 
+pip install -r requirements.txt -i https://pypi.mirrors.ustc.edu.cn/simple/
+
 ## 卸载
 
 pip uninstall [packagename]
