@@ -20,3 +20,26 @@ var a = const [c,2,3];
 ### final的要求就是 其声明的变量在赋值之后就不再改变
 
 ### static它的作用是 声明类的成员变量，使得多个相同类型的类对象共享同一个成员变量的实例。
+
+## 泛型
+### 函数泛型
+```dart
+T getInfo<T>(T param){
+  T num = param;
+  return num;
+}
+```
+T(返回的类型) getInfo<T(使用时接受的类型，确定T到底是哪一种类型)>(T(传入参数的类型) param){
+  T(定义变量时的类型) num = param;
+  return num;
+}
+### 类泛型
+```dart
+class ApiResult<T> {
+
+  int code;
+  String msg;
+  T data;
+
+}
+```
