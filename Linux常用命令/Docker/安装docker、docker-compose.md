@@ -1,3 +1,9 @@
+## 官方安装
+[官方安装](https://docs.docker.com/engine/install/ubuntu/)
+
+## 清华源安装（推荐）
+[清华源安装](https://mirror.tuna.tsinghua.edu.cn/help/docker-ce/)
+
 ## docker 安装（脚本）
 
 github 搜索 docker install

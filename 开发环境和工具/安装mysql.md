@@ -1,14 +1,25 @@
-### 脚本1
 
 ```shell
+# 脚本1
 docker run \
 --name mysql \
 -p 3306:3306 \
--v ${HOME}/data:/var/lib/mysql \
+-v ${HOME}/mysql8/data:/var/lib/mysql \
 -e MYSQL_ROOT_PASSWORD=123456 \
 -d \
-mysql:8.0.31 \
+mysql:8.0.35 \
 --default-authentication-plugin=mysql_native_password \
+--character-set-server=utf8mb4 \
+--collation-server=utf8mb4_bin 
+
+# 脚本2
+docker run \
+--name mysql \
+-p 3306:3306 \
+-v ${HOME}/mysql8/data:/var/lib/mysql \
+-e MYSQL_ROOT_PASSWORD=123456 \
+-d \
+mysql:8.2.0 \
 --character-set-server=utf8mb4 \
 --collation-server=utf8mb4_bin 
 ```

@@ -4,10 +4,11 @@ sudo vim /etc/docker/daemon.json
 ```shell
 {
     "registry-mirrors": [
-        "https://docker.mirrors.ustc.edu.cn",
         "https://dockerproxy.com",
         "https://hub-mirror.c.163.com",
         "https://mirror.baidubce.com",
+        "https://docker.mirrors.sjtug.sjtu.edu.cn",
+        "https://docker.nju.edu.cn",
         "https://ccr.ccs.tencentyun.com"
     ]
 }
