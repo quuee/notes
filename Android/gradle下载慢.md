@@ -1,12 +1,12 @@
 ## 最直接
 直接到maven repository下载jar包  
-放到C:\Users\xxx\.gradle\caches\modules-2\files-2.1下，注意查找jar包的文件名如：org.jetbrains.kotlin:kotlin-gradle-plugin
+放到C:\Users\xxx\.gradle\caches\modules-2\files-2.1下，注意查找jar包的文件名如：org.jetbrains.kotlin:kotlin-gradle-plugin  
 
 
-Windows 环境下执行
-./gradlew.bat --debug
+Windows 环境下执行  
+./gradlew.bat --debug  
 
-*unix/Mac 环境下执行
+*unix/Mac 环境下执行  
 ./gradlew --debug
 或
 bash ./gradlew --debug
