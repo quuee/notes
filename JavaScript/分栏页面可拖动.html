@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>可拖动分栏布局</title>
+<style>
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+  .column {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    overflow-y: auto;
+  }
+  .resizer {
+    width: 10px;
+    background-color: #000;
+    cursor: ew-resize;
+    position: relative;
+  }
+  .resizer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background-color: #fff;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="column" id="column1">栏1</div>
+  <div class="resizer" id="resizer"></div>
+  <div class="column" id="column2">栏2</div>
+</div>
+
+<script>
+  // 拖动处理
+  const resizer = document.getElementById('resizer');
+  const leftCol = document.getElementById('column1');
+  const rightCol = document.getElementById('column2');
+
+  let x = 0;
+  
+  const resize = (e) => {
+    x = e.clientX;
+    leftCol.style.flex = `0 0 ${x}px`;
+  };
+
+  resizer.addEventListener('mousedown', () => {
+    document.addEventListener('mousemove', resize, false);
+  });
+
+  document.addEventListener('mouseup', () => {
+    document.removeEventListener('mousemove', resize, false);
+  });
+</script>
+
+</body>
+</html>

@@ -44,6 +44,12 @@ class ApiResult<T> {
 }
 ```
 
+## extends with implements on
+extends：继承，和其它语言的继承没什么区别。  
+with：使用Mixin模式混入一个或者多个Mixin类。  
+implements：实现一个或多个接口并实现每个接口定义的API。  
+on：限制Mixin的使用范围  
+
 ## dart中list数组常用方法
 ### 添加方法
 add 添加一个元素到数组末尾  
