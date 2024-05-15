@@ -7,6 +7,7 @@
   path中加入zluda解压后的目录
 5 conda create -n test_env python=3.10.12
 5.1 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 （选cu118不要选cu12以上，不支持的。）
+pip install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 --index-url https://download.pytorch.org/whl/cu118
 5.2 把ZLUDA文件夹里的cublas.dll重命名为cublas64_11.dll，把cusparse.dll重命名为cusparse64_11.dll，并覆盖到conda的虚拟环境（C:\Users\bandz\.conda\envs\test_env\Lib\site-packages\torch\lib下）
   进入python编辑器
   import torch
@@ -59,3 +60,10 @@ if torch.cuda.is_available() or ngpu != 0:
             gpu_infos.append("%s\t%s" % (i, gpu_name))
             mem.append(int(torch.cuda.get_device_properties(i).total_memory/ 1024/ 1024/ 1024+ 0.4))
 ```
+
+gpt-vits打标失败
+RuntimeError: cuDNN failed with status CUDNN_STATUS_INTERNAL_ERROR
+
+torch.backends.cudnn.enabled = False 这个开启会内存溢出，而且变成cpu运算
+
+TODO 检查 cuda cudnn对应版本
