@@ -9,7 +9,16 @@ sudo vim /etc/docker/daemon.json
         "https://mirror.baidubce.com",
         "https://docker.mirrors.sjtug.sjtu.edu.cn",
         "https://docker.nju.edu.cn",
-        "https://ccr.ccs.tencentyun.com"
+        "https://ccr.ccs.tencentyun.com",
+
+        "https://registry.docker-cn.com",
+        "https://docker.mirrors.ustc.edu.cn",
+
+        "https://docker.m.daocloud.io", 
+        "https://noohub.ru", 
+        "https://huecker.io",
+        "https://dockerhub.timeweb.cloud"
+
     ]
 }
 

@@ -21,21 +21,28 @@ nginx tomcat jetty maven jenkins gitlab等
 
 ## docker --help 查看所有命令
 
-## 构建镜像
+### build
 
 [docker build](./docker%20build.md)
 
-## dockerfile
+### dockerfile
 
 [dockerfile编写](./dockerfile编写.md)
 
-## 拉取
+### pull
 
 docker pull getmeili/meilisearch:v1.3 
 
-## RUN
+### save
+docker save 保存的是镜像（image）
 
-### 语法
+### export
+docker export 保存的是容器（container）
+
+### load import
+docker load 用来载入镜像包，docker import 用来载入容器包，但两者都会恢复为镜像
+
+## RUN 语法
 
 docker run [选项] image
 

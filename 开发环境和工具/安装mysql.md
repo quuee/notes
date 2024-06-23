@@ -7,19 +7,19 @@ docker run \
 -v ${HOME}/mysql8/data:/var/lib/mysql \
 -e MYSQL_ROOT_PASSWORD=123456 \
 -d \
-mysql:8.0.35 \
+mysql:8.0.37 \
 --default-authentication-plugin=mysql_native_password \
 --character-set-server=utf8mb4 \
 --collation-server=utf8mb4_bin 
 
 # 脚本2
 docker run \
---name mysql \
+--name mysql8.4 \
 -p 3306:3306 \
 -v ${HOME}/mysql8/data:/var/lib/mysql \
 -e MYSQL_ROOT_PASSWORD=123456 \
 -d \
-mysql:8.2.0 \
+mysql:8.4 \
 --character-set-server=utf8mb4 \
 --collation-server=utf8mb4_bin 
 ```

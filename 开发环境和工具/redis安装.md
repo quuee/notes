@@ -20,6 +20,15 @@ redis-cli #【连接】
 auth 123456 #【登录】
 set hello world
 get hello
+```
 
-
+```shell
+docker run \
+-p 6379:6379 \
+--name redis \
+-v ${HOME}/redis/redis.conf:/etc/redis/redis.conf \
+-v ${HOME}/redis/data:/data \
+-d redis:7.2.4 redis-server /etc/redis/redis.conf \
+--appendonly yes \
+--requirepass '123456'
 ```
