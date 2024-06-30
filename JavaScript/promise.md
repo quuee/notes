@@ -60,3 +60,6 @@ var p = new Promise(function (resolve, reject) {
               console.log('这是失败的操作');
           });
 ```
+
+### then await
+Promise 的语法是 then/catch，而 async/await 的语法是 async/await 关键字。Promise 的 then 方法返回一个新的 Promise 对象，而 async/await 是直接使用 await 关键字等待异步结果
