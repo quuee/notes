@@ -17,7 +17,7 @@ docker run \
 --name mysql8.4 \
 -p 3306:3306 \
 -v ${HOME}/mysql8/data:/var/lib/mysql \
--e MYSQL_ROOT_PASSWORD=123456 \
+-e MYSQL_ROOT_PASSWORD=^password* \
 -d \
 mysql:8.4 \
 --character-set-server=utf8mb4 \
@@ -40,3 +40,5 @@ show databases;
 use [数据库];
 source /home/bak.sql;
 ```
+
+
