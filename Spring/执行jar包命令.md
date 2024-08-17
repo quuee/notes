@@ -16,4 +16,4 @@ command >out.file 是将commandd 输出重定向到out.flie文件中，即输出
 ![演示图](./java执行jar包.png)
 ## windows
 命令行窗口 有些参赛需要加引号
-start "badminton-server" javaw -jar "-Dfile.encoding=UTF-8" --spring.profiles.active=prod xxx.jar
+start "badminton-server" javaw -jar "-Dfile.encoding=UTF-8" xxx.jar --spring.profiles.active=prod
