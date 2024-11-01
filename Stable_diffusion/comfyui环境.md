@@ -45,3 +45,6 @@ python -c "import pathlib; [p.rmdir() for p in pathlib.Path('.').rglob('__pycach
 
 ## 插件（节点）
 ComfyUI-Manager
+
+## 外网访问
+python main.py --listen 0.0.0.0
