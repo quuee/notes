@@ -104,17 +104,16 @@ pip install ./uv_unwrapper/
 pip install ./texture_baker
 ```
 
-### comfyui-3d-pack
-该项目不支持最新的cuda12.4，跳过检查安装
-进入_Pre_Builds目录下
-添加cub_home到环境变量
-在build_config.yaml添加新的cuda版本，是代码可执行
-在build_util.py里将 CUDA_VERSION = get_cuda_version() 改为 CUDA_VERSION = 'cu124' 
-因网络问题，将dependencies.txt里面的github项目换成带镜像加速的地址
-配置cl.exe到环境变量path
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\bin\Hostx64\x64
-启用长路径
-ninja -v 报错，C:\Users\AX\.conda\envs\comfyui_py311_cuda121\Lib\site-packages\torch\utils\cpp_extension.py 找到修改为ninja --version
+### comfyui-3d-pack (据说是最难装的插件，没有之一)
+该项目不支持最新的cuda12.4，跳过检查安装  
+1. 进入_Pre_Builds目录下
+2. 添加cub_home到环境变量
+3. 在build_config.yaml添加新的cuda版本，是代码可执行
+4. 在build_util.py里将 CUDA_VERSION = get_cuda_version() 改为 CUDA_VERSION = 'cu124' 
+5. 因网络问题，将dependencies.txt里面的github项目换成带镜像加速的地址
+6. 配置cl.exe到环境变量path C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\bin\Hostx64\x64
+7. 启用长路径
+8. ninja -v 报错，C:\Users\AX\.conda\envs\comfyui_py311_cuda121\Lib\site-packages\torch\utils\cpp_extension.py 找到修改为ninja --version
 
 TODO 难道torch版本过高？
 [Wheel BUILD ERROR LOG]
