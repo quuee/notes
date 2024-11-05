@@ -1,29 +1,30 @@
 ## 创建虚拟环境
 
 ```
-conda create -n comfyui_py3_11 python=3.11
+conda create -n comfyui_py3_12 python=3.12
 
-conda activate comfyui_py3_11
+conda activate comfyui_py3_12
 
 conda env list
 
-conda activate comfyui_py311
+conda activate comfyui_py312
 
-conda create -n comfyui_py311 --clone comfyui_py311_bak #clone
+conda create -n comfyui_py312 --clone comfyui_py312_bak #clone
 
 conda deactivate
 
-conda remove -n comfyui_py311 --all
+conda remove -n comfyui_py312 --all
 
 ```
 
 
-## cuda版本
-nvida-smi查看自己能安装的cuda toolkit最新版本是多少  
-(查看对应版本)[https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html]
+## cuda环境
+1. nvidia-smi查看自己能安装的cuda toolkit最新版本是多少  
+(查看对应版本)[https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html]  
 驱动是可以向下兼容cuda toolkit  
-cuda toolkit目前有11.8 12.1 12.4 12.6，cuda toolkit次要版本是否向下兼容?  
-pytorch最新支持cuda toolkit 12.4，虽然cuda toolkit 12.6也能跑
+2. 如果pytorch支持的cuda是12.4 ，cuda toolkit 需要下载12.4以上；如果是支持12.1，cuda toolkit 需要下载12.1以上
+
+3. cuda和cudnn是支持NVIDIA的GPU计算的两个库，cuda是高性能计算，cudnn是深度神经网络计算。一般装cuda就OK
 
 ## python环境
 
@@ -49,6 +50,8 @@ conda会检查虽有依赖
 虚拟环境中pip安装的包会在当前环境中  
 conda安装的包会放在anaconda3/pkgs下，用的时候复制过去  
 
+## 下载comfyui
+小心从镜像加速站下载的comfyui可能不是最新的
 
 ## 模型目录
 编辑extra_model_paths.yaml，换成自己目录的位置（不要在这个文件加中文，不然编码报错）
@@ -163,9 +166,7 @@ typer
 rich
 typing-extensions
 
-conda activate comfyui_py311_cuda121
-cd C:\Users\AX\Documents\Stable_Diffusion\ComfyUI\custom_nodes\ComfyUI-3D-Pack
-python .\_Pre_Builds\_Build_Scripts\auto_build_all.py
+这依赖插件越多，依赖越难管理
 
 ## 外网访问
 1. python main.py --listen 0.0.0.0

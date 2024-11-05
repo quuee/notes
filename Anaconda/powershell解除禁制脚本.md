@@ -11,4 +11,3 @@ get-executionpolicy
 
 set-executionpolicy remotesigned
 ```
-Y
