@@ -1,3 +1,5 @@
+
+```yaml
 version: '3.8'
 services:
   xunlei:
@@ -21,3 +23,4 @@ services:
 networks:
   trim-default:
     external: true
+```

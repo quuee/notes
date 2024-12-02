@@ -1,3 +1,5 @@
+
+```yaml
 version: '3.8'
 services:
   photopea:
@@ -16,6 +18,6 @@ services:
 networks:
   trim-default:
     external: true
-
-# volumes:
+```
+#volumes:
       # -v /vol1/1000/Docker/drawio/drawiojs:/usr/local/tomcat/webapps/draw/js/

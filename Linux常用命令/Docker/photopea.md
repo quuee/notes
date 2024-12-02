@@ -1,6 +1,6 @@
 
 ## 飞牛 docker安装photopea 
-```
+```yaml
 version: '3.8'
 services:
   photopea:

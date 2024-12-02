@@ -1,3 +1,5 @@
+
+```yaml
 version: '3.8'
 services:
   photopea:
@@ -16,3 +18,5 @@ services:
 networks:
   trim-default:
     external: true
+
+```
