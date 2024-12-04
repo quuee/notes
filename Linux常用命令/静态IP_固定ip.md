@@ -36,3 +36,12 @@ sudo netplan try
 sudo netplan apply
 ```
 
+## 修改为EUI64 ipv6
+```shell
+sudo nmcli con modify "Wired connection 1" ipv6.addr-gen-mode eui64
+systemctl restart NetworkManager
+```
+
+### /etc/NetworkManager/system-connections/  路径下空的[2]
+- 1. 飞牛系统-网络连接-编辑，修改下网络配置，然后就会生成配置文件
+- 2. nmcli connection show ## 查看ethernet的名称
