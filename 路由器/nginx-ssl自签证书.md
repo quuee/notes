@@ -12,7 +12,7 @@ cd /etc/nginx
 # 1 创建服务器证书密钥文件 server.key：
 openssl genrsa -des3 -out server.key 1024
 # 输入密码，确认密码，自己随便定义，但是要记住，后面会用到。
-Enter PEM pass phrase:
+Enter PEM pass phrase: #qwer1234
 Verifying - Enter PEM pass phrase:
 # 2 创建服务器证书的申请文件 server.csr
 openssl req -new -key server.key -out server.csr
@@ -97,6 +97,38 @@ http {
             proxy_pass http://192.168.1.142:4533;
         } 
     }
+
+    server {
+        # nas-drawio
+        listen       [::]:28888 ssl;
+        location / {
+            proxy_pass http://192.168.1.142:28888;
+        } 
+    }
+
+    server {
+        # nas-photopea
+        listen       [::]:28887 ssl;
+        location / {
+            proxy_pass http://192.168.1.142:28887;
+        } 
+    }
+
+    server {
+        # nas-penpot
+        listen       [::]:9001 ssl;
+        location / {
+            proxy_pass http://192.168.1.142:9001;
+        } 
+    }
+
+    # server {
+    #     # nas-xunlei
+    #     listen       [::]:2345 ssl;
+    #     location / {
+    #         proxy_pass http://192.168.1.142:2345;
+    #     } 
+    # }
  
     # another virtual host using mix of IP-, name-, and port-based configuration
     #
@@ -133,6 +165,37 @@ http {
     #    }
     #}
  
+}
+
+# 路由器端的nginx没有stream模块?
+stream {
+
+    # win 远程桌面
+    upstream mstsc {
+        # 目标的ip端口,微软远程桌面默认是3389,可以自己修改下
+        server 192.168.1.130:43389;
+    }
+
+    server {
+        # 监听端口,这个是暴露出去的端口
+        listen 43385;
+        # 代理到目标
+        proxy_pass mstsc;
+    }
+
+    # win 远程桌面
+    #upstream mstsc_ipv6 {
+        # 目标的ip端口
+        #server [2409:8a28:40cb:a6a0:E6E8:D2FF:FE94:541B]:43389;
+    #}
+
+    #server {
+        # 监听端口
+        #listen [::]:43385 ipv6only=on;
+        # 代理到目标
+        #proxy_pass mstsc_ipv6;
+        #proxy_pass [2409:8a28:40cb:a6a0:E6E8:D2FF:FE94:541B]:43389;
+    #}
 }
 ```
 
