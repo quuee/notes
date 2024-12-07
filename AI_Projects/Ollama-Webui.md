@@ -1,6 +1,5 @@
-
+### webui
 ```yaml
-
 version: "3.8"
 
 services:
@@ -21,3 +20,8 @@ networks:
   trim-default:
     external: true
 ```
+### ollama 局域网访问
+安装ollama,如果webui和ollama服务不是在同台设备上,需要修改OLLAMA_HOST.
+windows在环境变量 (系统|用户都行)添加 OLLAMA_HOST:0.0.0.0  
+(或者只允许192.168.0.0/24网段的地址,但是这么写不行)
+重启ollama
