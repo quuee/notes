@@ -51,6 +51,17 @@ mkdir cert
 mv server.key server.crt -t ./cert
 ```
 
+-key    私钥文件（指明从哪个私钥文件中提取公钥创建证书签署请求）
+
+-out    指定证书文件存放在位置
+
+-new    生成新的证书签署请求；
+
+-days n   证书有效时长，单位为“天”；
+
+-x509    生成自签证书
+
+
 ### 配置nginx.conf文件
 先在win弄好再复制进去
 ```conf
