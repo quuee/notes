@@ -194,7 +194,7 @@ stream {
 
     #server {
         # 监听端口
-        #listen [::]:43385 ipv6only=on;
+        #listen [::]:43385 ipv6only=on; #ipv6only=on 不占用ipv4端口？
         # 代理到目标
         #proxy_pass mstsc_ipv6;
         #proxy_pass [2409:8a28:40cb:a6a0:E6E8:D2FF:FE94:541B]:43389;
