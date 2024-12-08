@@ -1,16 +1,16 @@
-## 生成自签ssl证书
+## 安装自签ssl证书
 
 ### 路由器安装nginx
 系统->软件包  
 直接安装nginx-full全编译版本
 
-### ssh登录路由器
+### 生成自签ssl证书
 ```shell
 ssh root@192.168.1.1 # 登录命令
 # 登录后
 cd /etc/nginx
 # 1 创建服务器证书密钥文件 server.key：
-openssl genrsa -des3 -out server.key 1024
+openssl genrsa -des3 -out server.key 2048
 # 输入密码，确认密码，自己随便定义，但是要记住，后面会用到。
 Enter PEM pass phrase: #qwer1234
 Verifying - Enter PEM pass phrase:
@@ -46,8 +46,7 @@ openssl rsa -in server.key.bak -out server.key
 openssl x509 -req -days 1825 -in server.csr -signkey server.key -out server.crt
 
 mkdir cert
-mv server.key ./cert
-mv server.crt ./cert
+mv server.key server.crt -t ./cert
 ```
 
 ### 配置nginx.conf文件
