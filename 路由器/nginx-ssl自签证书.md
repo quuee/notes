@@ -3,17 +3,19 @@
 ### 路由器安装nginx
 系统->软件包  
 直接安装nginx-full全编译版本
+nginx -v # 查看nginx版本
+nginx -V # 查看所有编译模块信息
 
-### ssh登录路由器
+### 生成自签ssl证书
 ```shell
-ssh root@192.168.1.1 # 登录命令
+ssh root@192.168.1.1 # 登录路由器
 # 登录后
 cd /etc/nginx
 # 1 创建服务器证书密钥文件 server.key：
 openssl genrsa -des3 -out server.key 1024
 # 输入密码，确认密码，自己随便定义，但是要记住，后面会用到。
 Enter PEM pass phrase: #qwer1234
-Verifying - Enter PEM pass phrase:
+Verifying - Enter PEM pass phrase: #qwer1234
 # 2 创建服务器证书的申请文件 server.csr
 openssl req -new -key server.key -out server.csr
 # 这里要你填一些相关信息
@@ -168,6 +170,8 @@ http {
 }
 
 # 路由器端的nginx没有stream模块?
+# 安装nginx-mod-stream 配置文件再加入这句
+load_module /usr/lib64/nginx/modules/ngx_stream_module.so;
 stream {
 
     # win 远程桌面
@@ -178,7 +182,7 @@ stream {
 
     server {
         # 监听端口,这个是暴露出去的端口
-        listen 43385;
+        listen [::]:43385 ipv6only=on;
         # 代理到目标
         proxy_pass mstsc;
     }
@@ -218,3 +222,5 @@ nginx -s reload
 ![](./端口转发.png)
 ![](./端口转发2.png)
 之前在 网络->防火墙->通信规则 里创建的对应的端口规则可以弃用了
+
+路由器安装nginx,再转发有问题

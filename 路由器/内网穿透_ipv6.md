@@ -152,3 +152,5 @@ stream {
 ```
 
 ## 加密
+生成自签证书,路由器nginx转发不了,有nas的nginx转发
+[参考生成ssl证书](./nginx-ssl自签证书.md)
