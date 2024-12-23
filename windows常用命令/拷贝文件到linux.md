@@ -1,1 +1,0 @@
-scp ./clash.zip x@192.168.1.7:/home/x/
