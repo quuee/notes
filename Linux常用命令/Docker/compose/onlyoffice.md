@@ -10,11 +10,12 @@ services:
     volumes:
       - /vol2/1000/Docker/onlyoffice/data:/var/www/onlyoffice/Data
       - /vol2/1000/Docker/onlyoffice/logs:/var/log/onlyoffice
-      - /vol2/1000/Docker/onlyoffice/sdkjs-plugins:/var/www/onlyoffice/documentserver/sdkjs-plugins/plugin
+      - /vol2/1000/Docker/onlyoffice/lib:/var/lib/onlyoffice
+      - /vol2/1000/Docker/onlyoffice/postgresql:/var/lib/postgresql
     environment:
       - JWT_ENABLED=true
       - JWT_SECRET=admin123
-      - ONLYOFFICE_LOCALE=zh-CN
+      - ONLYOFFICE_LOCALE=zh-CN #没用
     networks:
       - trim-default
 networks:
