@@ -2,7 +2,7 @@
 ```yaml
 services:
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+    image: ghcr.io/open-webui/open-webui:v0.5.3
     container_name: open-webui
     restart: no
     ports:

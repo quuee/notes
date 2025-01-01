@@ -20,6 +20,8 @@ services:
       - "2345:2345"
     networks:
       - trim-default
+
+# 连接外部网络
 networks:
   trim-default:
     external: true
