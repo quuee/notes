@@ -1,9 +1,6 @@
 
 
 ```yaml
-
-version: '3'
-
 services:
   mysql:
     image: mysql:8.4.3
