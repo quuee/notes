@@ -1,3 +1,6 @@
+## 介绍
+有个闲置的usb摄像头，通过ffmpeg推流到nginx服务器，再打开nginx的页面查看画面。
+
 ### 项目路径
 project/
 ├── Dockerfile
