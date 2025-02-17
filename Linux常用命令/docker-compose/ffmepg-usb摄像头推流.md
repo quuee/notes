@@ -138,7 +138,7 @@ rtmp {
 
             ## copy的配置
             wait_key on; #对视频切片进行保护，这样就不会产生马赛克了。
-            hls_fragment 30s; #每个视频切片的时长。
+            hls_fragment 10s; #每个视频切片的时长。
             hls_playlist_length 60s; #总共可以回看的事件，这里设置的是1分钟。
             hls_continuous on; #连续模式。
             hls_cleanup on; #对多余的切片进行删除。
