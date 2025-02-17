@@ -186,7 +186,7 @@ http {
 <body>
     <h1>Live Stream</h1>
     <video id="live-stream" class="video-js vjs-default-skin" controls preload="auto" width="640" height="480">
-        <source src="http://192.168.1.142:28850/hls/stream.m3u8" type="application/x-mpegURL">
+        <source src="http://192.168.1.142:28850/hls/usbcamera/index.m3u8" type="application/x-mpegURL">
         Your browser does not support the video tag.
     </video>
 
@@ -255,5 +255,6 @@ services:
 - [x] 因为我设备和nginx在同一台机子上，1935端口用处不大
 - [ ] 需要等1-2分钟生成视频文件，不是实时。可能和rtmp这个模块生成切片文件有关
 - [x] 目前只能用vlc播放(媒体->流->网络->页面的http://m3u8地址)
-- [ ] 页面无法播放
-- [ ] 录制
+- [ ] 页面无法播放，不知是不是要转码才能播放
+- [ ] 录制存储功能
+
