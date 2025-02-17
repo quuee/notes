@@ -136,6 +136,7 @@ rtmp {
             hls on;
             hls_path /var/www/html/stream/hls;
 
+            ## 直播模式
             ## copy的配置
             wait_key on; #对视频切片进行保护，这样就不会产生马赛克了。
             hls_fragment 10s; #每个视频切片的时长。
@@ -143,6 +144,12 @@ rtmp {
             hls_continuous on; #连续模式。
             hls_cleanup on; #对多余的切片进行删除。
             hls_nested on; #嵌套模式。
+
+            ## 录制模式
+            #record all;
+            #record_path /home/bucket;
+            #record_unique on;
+            #record_suffix _%Z_%Y%m%d_%H%M%S.flv; 
 
         }
     }
