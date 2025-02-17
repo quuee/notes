@@ -6,7 +6,7 @@
 
 | Syntax   | Description                                                                                                           |
 | -------- | --------------------------------------------------------------------------------------------------------------------- |
-| 标题     | `# H1` <br>`# H2` <br> `# H3`                                                                                         |
+| 标题     | `# H1` <br>`## H2` <br> `### H3`                                                                                         |
 | 标题编号 | `### title {#custome-id}`                                                                                             |
 | 粗体     | **Blod Text**                                                                                                         |
 | 斜体     | _Italicized Text_                                                                                                     |
@@ -14,7 +14,7 @@
 | 有序列表 | `1. First item`<br>`2. Second item` <br>`3. Third item`                                                               |
 | 无序列表 | `- First item`<br>`- Second item`<br>`- Third item`                                                                   |
 | 代码     | `code` <br> `print("hello")`                                                                                          |
-| 代码块   | \```json \```                                                                                                          |
+| 代码块   | ` ```json {name:''} ``` ` |
 | 分隔线   | `---` <br> `***` <br> `___`                                                                                           |
 | 链接     | `[title](https://www.example.com)`                                                                                    |
 | 图片     | `![alt text](image.jpg)`                                                                                              |
