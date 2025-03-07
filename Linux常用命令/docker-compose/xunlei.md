@@ -1,4 +1,4 @@
-
+### 1
 ```yaml
 version: '3.8'
 services:
@@ -25,4 +25,25 @@ services:
 networks:
   trim-default:
     external: true
+```
+
+### 2
+```yaml
+services:
+  xunlei:
+    image: registry.fnnas.com/fnapp/cnk3x_xunlei:latest
+    container_name: xunlei
+    restart: unless-stopped
+    privileged: true
+    environment:
+      UID: ${TRIM_UID}
+      GID: ${TRIM_GID}
+      XL_DASHBOARD_USERNAME: ${wizard_username}
+      XL_DASHBOARD_PASSWORD: ${wizard_password}    
+    volumes:
+      - /vol1/1000/DockerCompose/xunlei/data:/xunlei/data
+      - /vol1/1000/Downloads:/xunlei/downloads
+    ports:
+      - "23456:2345"
+    network_mode: bridge
 ```
