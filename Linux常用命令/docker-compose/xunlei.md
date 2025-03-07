@@ -41,9 +41,12 @@ services:
       XL_DASHBOARD_USERNAME: ${wizard_username}
       XL_DASHBOARD_PASSWORD: ${wizard_password}    
     volumes:
-      - /vol1/1000/DockerCompose/xunlei/data:/xunlei/data
+      - /vol2/1000/DockerCompose/xunlei/data:/xunlei/data
       - /vol1/1000/Downloads:/xunlei/downloads
     ports:
       - "23456:2345"
     network_mode: bridge
 ```
+
+docker应用数据在固态
+纯粹数据资源文件放机械盘
