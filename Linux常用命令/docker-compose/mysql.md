@@ -6,6 +6,7 @@ services:
     image: mysql:8.4.3
     container_name: mysql
     restart: no
+    privileged: true
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
       TZ: Asia/Shanghai
@@ -17,7 +18,7 @@ services:
       - "28860:3306"
     volumes:
       - /vol2/1000/Docker/mysql/data:/var/lib/mysql
-      - /vol2/1000/Docker/mysql/config:/etc/mysql/conf.d
+      - /vol2/1000/Docker/mysql/config:/etc/mysql/conf.d/
       - /vol2/1000/Docker/mysql/log:/var/log/mysql
     command:
       --max_connections=1000
@@ -42,4 +43,6 @@ networks:
   trim-default:
     external: true
 ```
-如果在/etc/mysql/conf.d/下创建my.cnf文件,不会覆盖/etc/my.cnf的配置.
+ 1. 如果在/etc/mysql/conf.d/下创建my.cnf文件,不会覆盖/etc/my.cnf的配置.
+ 2. mysqld: Can't read dir of '/etc/mysql/conf.d/ 权限不足 chmod 777 /vol2/1000/Docker/mysql/config
+
