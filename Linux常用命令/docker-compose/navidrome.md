@@ -24,16 +24,14 @@ services:
     image: deluan/navidrome:0.54.2
     network_mode: bridge
     ports:
-      - "28887:4533"
+      - "28880:4533"
     restart: unless-stopped
     environment:
-      UID: ${TRIM_UID}
-      GID: ${TRIM_GID}
       ND_SCANSCHEDULE: 1h
       ND_LOGLEVEL: info  
       ND_SESSIONTIMEOUT: 24h
       ND_BASEURL: ""
     volumes:
-      - "/vol2/1000/DockerCompose/navidrome/data:/data"
-      - "/vol3/1000/Music/常听:/music:ro"
+      - "/vol1/1000/DockerCompose/navidrome/data:/data"
+      - "/vol2/1000/Music/常听:/music"
 ```

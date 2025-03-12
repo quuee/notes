@@ -20,3 +20,17 @@ networks:
   trim-default:
     external: true
 ```
+
+```yaml
+services:
+  photopea:
+    image: kovaszab/photopea:latest
+    container_name: photopea
+    restart: unless-stopped
+    privileged: true
+    environment:
+      TZ: Asiz/Shanghai
+    ports:
+      - "28882:8887"
+    network_mode: bridge
+```

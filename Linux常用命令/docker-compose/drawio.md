@@ -31,8 +31,6 @@ services:
     restart: unless-stopped
     privileged: true
     environment:
-      UID: ${TRIM_UID}
-      GID: ${TRIM_GID}
       TZ: Asiz/Shanghai
     ports:
       - "28888:8080"

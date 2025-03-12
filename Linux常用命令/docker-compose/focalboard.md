@@ -16,3 +16,16 @@ networks:
   trim-default:
     external: true
 ```
+
+```yaml
+services:
+  focalboard:
+    image: mattermost/focalboard:latest
+    container_name: focalboard
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - 28883:8000
+    volumes:
+      - /vol1/1000/DockerCompose/focalboard/data:/opt/focalboard/data #如果启动失败，因为没有默认数
+```
