@@ -172,3 +172,7 @@ typing-extensions
 1. python main.py --listen 0.0.0.0
 2. 修改cli_args.py，将127.0.0.1改为0.0.0.0
 3. 修改
+
+
+## comfyui in docker
+https://github.com/YanWenKun/ComfyUI-Docker
