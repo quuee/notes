@@ -8,8 +8,8 @@
 | -------- | --------------------------------------------------------------------------------------------------------------------- |
 | 标题     | `# H1` <br>`## H2` <br> `### H3`                                                                                         |
 | 标题编号 | `### title {#custome-id}`                                                                                             |
-| 粗体     | **Blod Text**                                                                                                         |
-| 斜体     | _Italicized Text_                                                                                                     |
+| 粗体     | `**Blod Text**`                                                                                                         |
+| 斜体     | `_Italicized Text_`                                                                                                     |
 | 引用块   | `> blockquote`                                                                                                        |
 | 有序列表 | `1. First item`<br>`2. Second item` <br>`3. Third item`                                                               |
 | 无序列表 | `- First item`<br>`- Second item`<br>`- Third item`                                                                   |
