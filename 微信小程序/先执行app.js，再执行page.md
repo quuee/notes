@@ -1,0 +1,1 @@
+## 微信小程序app.js的onLaunch执行完之后再执行Page的onLoad & 小程序onLaunch和onLoad执行顺序
