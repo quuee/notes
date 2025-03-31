@@ -2,7 +2,7 @@
 ### comyui3d
 ```yaml
 services:
-  comfyui3d:
+  comfy3d-pt25:
     image: yanwk/comfyui-boot:comfy3d-pt25-20250217
     container_name: comfy3d-pt25
     restart: unless-stopped
@@ -10,8 +10,8 @@ services:
     ports:
       - 28883:8188
     volumes:
-      - /vol2/1000/Comfyui/comfy3d-pt25:/root
-      - /vol2/1000/Comfyui/tmp:/tmp
+      - /vol2/1000/ComfyUI/DockerAppsData/comfyui3d-pt25/root:/root
+      - /vol2/1000/ComfyUI/DockerAppsData/comfyui3d-pt25/tmp:/tmp
     deploy:
       resources:
         reservations:
@@ -20,9 +20,9 @@ services:
     environment:
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
-      CLI_ARGS: ""
       PIP_INDEX_URL: "https://mirrors.cernet.edu.cn/pypi/web/simple"
       HF_ENDPOINT: "https://hf-mirror.com"
+      CLI_ARGS: ""
       # 挂代理 方便下载无法下载的文件。之后可以在容器环境删除这个配置
       http_proxy: "http://192.168.1.130:7890"
       https_proxy: "http://192.168.1.130:7890"
