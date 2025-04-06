@@ -38,3 +38,12 @@ aptitude 是一个更强大的包管理工具，可以更好地处理复杂的�
 
 ## 重启docker
 
+
+
+## 卸载nvidia驱动
+### apt方式
+`sudo apt-get --purge remove nvidia*`
+
+### 手动安装卸载
+`sudo NVIDIA-Linux-x86_64-<version>.run --uninstall` 
+`sudo nvidia-uninstall`
