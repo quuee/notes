@@ -6,6 +6,7 @@ services:
   music-tag:
     image: xhongc/music_tag_web:latest
     container_name: music-tag-web
+    network_mode: bridge
     ports:
       - "28885:8001"
     volumes:

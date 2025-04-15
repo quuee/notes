@@ -36,6 +36,7 @@ services:
   clash-ui:
     image: mrxianyu/metacubexd-ui:v1.176.1
     container_name: clash-ui
+    network_mode: bridge
     ports:
       - 28890:80
 ```
