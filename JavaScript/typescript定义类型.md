@@ -41,6 +41,27 @@ interface Person {
     isWebDev: boolean;
 }
 ```
+#### 接口继承
+```ts
+interface Base {
+  id: number;
+  createdAt: Date;
+}
+
+interface User extends Base {
+  name: string;
+  email: string;
+}
+
+// 使用
+const user: User = {
+  id: 1,
+  createdAt: new Date(),
+  name: "John",
+  email: "john@example.com"
+};
+```
+
 ### 相似处
 都可以描述 Object和Function。
 ```typescript
@@ -62,6 +83,104 @@ interface SetPoint {
   (x: number, y: number): void;
 }
 ```
+
+#### 类型别名交叉类型
+```ts
+type Base = {
+  id: number;
+  createdAt: Date;
+};
+
+type User = Base & {
+  name: string;
+  email: string;
+};
+
+// 等同于接口继承的效果
+```
+
+#### 联合类型
+```ts
+type Status = "active" | "inactive" | "pending";
+
+type User = {
+  id: number;
+  status: Status;
+};
+```
+
+#### 类型合并
+```ts
+interface User {
+  name: string;
+}
+
+interface User {
+  age: number;
+}
+
+// 最终 User 包含 name 和 age
+```
+
+#### 使用工具类型合并
+```ts
+type PartialUser = Partial<User>; // 所有属性变为可选
+type ReadonlyUser = Readonly<User>; // 所有属性变为只读
+type UserWithoutEmail = Omit<User, "email">; // 排除特定属性
+type UserWithAddress = User & { address: string }; // 添加新属性
+```
+
+#### 高级组合
+```ts
+// 基础类型
+type Entity = {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+// 用户角色
+type Role = "admin" | "user" | "guest";
+
+// 扩展基础类型
+type User = Entity & {
+  name: string;
+  email: string;
+  role: Role;
+  // 可选属性
+  phone?: string;
+};
+
+// 进一步扩展
+type AdminUser = User & {
+  role: "admin"; // 重写role为特定值
+  permissions: string[];
+};
+
+// 使用条件类型
+type UserProfile<T extends Role> = User & {
+  role: T;
+  profile: T extends "admin" ? AdminProfile : BasicProfile;
+};
+
+type AdminProfile = { department: string };
+type BasicProfile = { avatar: string };
+```
+
+#### 泛型继承
+```ts
+interface Repository<T extends { id: string }> {
+  get(id: string): Promise<T>;
+  save(entity: T): Promise<void>;
+}
+
+class UserRepository implements Repository<User> {
+  // 必须实现 get 和 save 方法
+}
+```
+
+#### 类型保护与区分联合类型
+
 
 ## typescript 给 vue3 添加泛型
 ### 为 ref() 标注类型
