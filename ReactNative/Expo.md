@@ -3,7 +3,7 @@
 - `npx create-expo-app Music_demo1 --template tabs@50` 带tabs导航,@后面是版本。有些插件版本太高用不了
 - `npx create-expo-app tab_swiper --template expo-template-blank-typescript@50`
 
-### 总是出环境问题  这模块没有，那个编译不通过，到处冲突
+### 总是出环境问题  这模块没有，那个编译不通过，到处冲突，用模拟机老卡死
 `npx expo prebuild -p [ios/android] --clean` 会 Unmatched Route
 `npx expo prebuild`
 `npm start -- --clear`
@@ -15,6 +15,9 @@
 临时方法：重新创建个项目，把代码配置拷贝过去
 
 ### 如何debug
+终端启动项目
+按下m，虚拟机会弹出选者项，选择 open debugger，
+终端出现链接，点击链接
 
 ### gradle下载超时，换国内镜像
 在android->gradle->wrapper->gradle-wrapper.properties修改distributionUrl=https\://mirrors.cloud.tencent.com/gradle/gradle-8.10.2-all.zip
@@ -237,5 +240,8 @@ console.log(songInfo.title, songInfo.artist);
 ```
 
 ### 获取本地音乐
+
+### spalsh页面总是在最后加载
+讲道理不是最先加载？
 
 
