@@ -1,19 +1,26 @@
 ### 创建项目
 
+有些插件版本太高用不了
+
 - `npx create-expo-app [项目名] --template` 接下来自己选
-- `npx create-expo-app Music_demo1 --template tabs@50` 带 tabs 导航,@后面是版本。有些插件版本太高用不了
+- `npx create-expo-app Music_demo1 --template tabs@50` 带 tabs 导航,@后面是版本。
 - `npx create-expo-app tab_swiper --template expo-template-blank-typescript@50`
+
+### package.json
+
+```shell
+npx expo install @react-native-async-storage/async-storage axios crypto-js expo-blur expo-constants react-native-awesome-slider  react-native-gesture-handler react-native-loader-kit react-native-track-player zustand
+```
+
+react-native-fast-image 可以换 expo-image
+react-native-image-colors
 
 ### 总是出环境问题 这模块没有，那个编译不通过，到处冲突，用模拟机老卡死
 
-`npx expo prebuild -p [ios/android] --clean` 会 Unmatched Route
+`npx expo prebuild -p [ios/android] --clean`
 `npx expo prebuild`
-`npm start -- --clear`
+`npm start -- --clear |  npm star -c`
 `npx expo run:android`
-
-临时方法：重新创建个项目，把代码配置拷贝过去
-
-### Unmatched Route 找不到路径问题
 
 临时方法：重新创建个项目，把代码配置拷贝过去
 
@@ -26,21 +33,6 @@
 ### gradle 下载超时，换国内镜像
 
 在 android->gradle->wrapper->gradle-wrapper.properties 修改 distributionUrl=https\://mirrors.cloud.tencent.com/gradle/gradle-8.10.2-all.zip
-
-### gradle maven 国内镜像
-
-好像没什么用
-
-```gradle
-        //国内镜像
-        maven { url 'https://repo.huaweicloud.com/repository/maven/' }
-        maven { url 'https://mirrors.tuna.tsinghua.edu.cn/repository/maven/' }
-        maven { url 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/' }
-        maven { url 'https://mirrors.ustc.edu.cn/maven/' }
-        maven { url 'https://repo.jd.com/maven/' }
-        maven { url 'https://mirrors.ustc.edu.cn/maven-central/' }
-        maven { url 'https://maven.aliyun.com/repository/public/' }
-```
 
 ### ninja: error:
 
@@ -124,7 +116,14 @@ export const StackScreenWithSearchBar: NativeStackNavigationOptions = {
 }
 ```
 
-### 无法控制路由
+### 直接调整导航栏中的 statusBarStyle ，状态栏被背景色困扰显示问题
+
+statusBarStyle: 'dark' | 'light', 如 Stack
+如果嵌套了多个导航栏都要改，不知道能不能在根目录 一次性全局改掉
+
+Tabs.Screen headerShown: false, 控制是否显示 header，在多个嵌套屏幕下都要关
+
+### expo-router 无法控制路由
 
 src/app/
 ├── (tabs)/
@@ -140,11 +139,156 @@ src/app/
 export const unstable_settings = {
   initialRouteName: 'home', //卵用没有
 }
+
+<Stack initialRouteName="(tabs)">
+<Tabs  initialRouteName="recommend">
 ```
 
 还是启动直接进入(play)，在实际目录中（play）是在（tabs）上方，将（play）改为（uplay）后，进入（tabs）下的目录
 说明 expo router 是根据文件顺序进入默认页面
 最后只能将（tabs）改为（\_tabs）
+
+### expo-router 路由介绍
+
+| 特性           | 带括号 (folder)    | 不带括号 folder |
+| -------------- | ------------------ | --------------- |
+| URL 路径可见性 | 不显示在 URL 中    | 显示在 URL 中   |
+| 路由分组       | 用于逻辑分组       | 用于路径结构    |
+| 布局嵌套       | 可选是否继承       | 强制继承        |
+| 常见用途       | 认证流程、布局分组 | 常规路由        |
+
+- router.push(path) - 导航到新页面
+
+- router.replace(path) - 替换当前页面
+
+- router.back() - 返回上一页
+
+- router.canGoBack() - 检查是否可以返回
+
+### 文件夹 文件名称带特殊符号
+
+1. () 逻辑分组
+2. [id].tsx 动态路由
+3. [...not-found].tsx 通配符路由
+
+### \_layout 的作用
+
+1. 定义共享布局：允许你为同一目录下的所有路由页面创建共享的 UI 布局结构
+
+```tsx
+// app/home/_layout.tsx
+import { Stack } from 'expo-router'
+
+export default function HomeLayout() {
+  return (
+    <>
+      <Stack />
+      <Footer /> {/* 所有/home下的页面都会显示这个Footer */}
+    </>
+  )
+}
+```
+
+2. 嵌套路由配置
+
+```
+app/
+  _layout.tsx        // 根布局
+  home/
+    _layout.tsx      // home专属布局
+    index.tsx
+    details.tsx
+```
+
+3. 导航容器设置
+
+```tsx
+// app/(tabs)/_layout.tsx
+import { Tabs } from 'expo-router'
+
+export default function TabLayout() {
+  return (
+    <Tabs>
+      <Tabs.Screen name="index" />
+      <Tabs.Screen name="settings" />
+    </Tabs>
+  )
+}
+```
+
+4. 路由屏幕配置
+
+```tsx
+// app/_layout.tsx
+import { Stack } from 'expo-router'
+
+export default function Layout() {
+  return (
+    <Stack>
+      <Stack.Screen
+        name="index"
+        options={{
+          title: '首页',
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="profile"
+        options={{
+          headerTitle: '用户资料',
+        }}
+      />
+    </Stack>
+  )
+}
+```
+
+5. 身份验证控制
+
+```tsx
+// app/(auth)/_layout.tsx
+import { Redirect, Stack } from 'expo-router'
+import { useAuth } from '../auth'
+
+export default function AuthLayout() {
+  const { user } = useAuth()
+
+  if (user) {
+    return <Redirect href="/home" />
+  }
+
+  return <Stack />
+}
+```
+
+6. 动态布局切换
+
+```tsx
+// app/_layout.tsx
+export default function Layout() {
+  const { isTablet } = useDeviceInfo()
+
+  return isTablet ? <TabletLayout /> : <MobileLayout />
+}
+```
+
+7. 全局状态共享 如 app/\_layout.tsx，提供：通常包含全局样式和 Providers，必须渲染一个导航容器（Stack、Tabs 等）
+
+```tsx
+// app/_layout.tsx
+import { ThemeProvider } from '../theme'
+
+export default function RootLayout() {
+  return (
+    <ThemeProvider>
+      <Stack />
+    </ThemeProvider>
+  )
+}
+```
+
+8. 根布局，同 7
+9. 分组布局 app/(group)/\_layout.tsx；只影响该分组内的路由，可以覆盖根布局的设置
 
 ### 当键盘弹出时，防止底部 TabBar 上浮
 
