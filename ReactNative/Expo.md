@@ -9,7 +9,7 @@
 ### package.json
 
 ```shell
-npx expo install @react-native-async-storage/async-storage axios crypto-js expo-blur expo-constants react-native-awesome-slider  react-native-gesture-handler react-native-loader-kit react-native-track-player zustand
+npx expo install @react-native-async-storage/async-storage axios crypto-js expo-blur expo-constants react-native-awesome-slider  react-native-gesture-handler react-native-loader-kit react-native-track-player zustand expo-image react-native-image-colors
 ```
 
 react-native-fast-image 可以换 expo-image
@@ -29,6 +29,8 @@ react-native-image-colors
 终端启动项目
 按下 m，虚拟机会弹出选者项，选择 open debugger，
 终端出现链接，点击链接
+
+有时候启动项目，虚拟机启动报错，真机没事
 
 ### gradle 下载超时，换国内镜像
 
@@ -95,6 +97,8 @@ import { StatusBar } from 'expo-status-bar'
 ;<StatusBar style="auto" translucent backgroundColor="transparent" />
 ```
 
+以上两个方案都没用
+
 ### 在 Expo（使用 Expo Router 或 React Navigation）中，如果 Stack.Screen 的 index 页面内容与标题栏重叠
 
 在使用 searchBar 时
@@ -122,6 +126,17 @@ statusBarStyle: 'dark' | 'light', 如 Stack
 如果嵌套了多个导航栏都要改，不知道能不能在根目录 一次性全局改掉
 
 Tabs.Screen headerShown: false, 控制是否显示 header，在多个嵌套屏幕下都要关
+
+在 tabs 标签上包裹 SafeAreaView，不会超出状态栏（重叠）
+（也不会让状态栏被遮挡（同色的背景字体显示不出来））
+
+```tsx
+<SafeAreaView style={styles.container}>
+  <Tabs>
+    <Tabs.screem />
+  </Tabs>
+</SafeAreaView>
+```
 
 ### expo-router 无法控制路由
 
