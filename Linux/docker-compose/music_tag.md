@@ -1,6 +1,6 @@
 
 
-### V1 
+### V1
 ```yaml
 services:
   music-tag:
@@ -16,6 +16,6 @@ services:
     command: /start
 ```
 
-没效果，老失败
+
 
 ### V2 收费

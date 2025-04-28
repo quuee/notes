@@ -60,7 +60,7 @@ const [state, dispatch] = useReducer(formReducer, loginFormData)
 ## useEffect()
 
 ```ts
-//每次渲染后运行
+//每次渲染后运行 ,空依赖数组 [] 表示副作用只会在组件挂载和卸载时执行一次。
 useEffect(() => {}, [])
 ```
 
@@ -72,6 +72,14 @@ useEffect(()=>{
 },[count])
 //如果依赖性发生变化，就执行一次
 <Button title='click' onClick={()=>setCount(count+1))/>
+
+```
+
+```ts
+useEffect(() => {
+  // 返回的函数是一个清理函数，用于在组件卸载前执行清理操作
+  return () => {}
+}, [])
 ```
 
 ## useQuery()
@@ -149,3 +157,5 @@ const Button = ({ onPress }) => {
 只要有提供传递的值，无论有多深，都可以读取到
 
 ## useTransition() useDeferredValue()
+
+## useSharedValue

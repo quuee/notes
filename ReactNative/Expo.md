@@ -3,13 +3,13 @@
 有些插件版本太高用不了
 
 - `npx create-expo-app [项目名] --template` 接下来自己选
-- `npx create-expo-app Music_demo1 --template tabs@50` 带 tabs 导航,@后面是版本。
-- `npx create-expo-app tab_swiper --template expo-template-blank-typescript@50`
+- `npx create-expo-app Music_demo1 --template tabs@51` 带 tabs 导航,@后面是版本。
+- `npx create-expo-app tab_swiper --template expo-template-blank-typescript@51`
 
 ### package.json
 
 ```shell
-npx expo install @react-native-async-storage/async-storage axios crypto-js expo-blur expo-constants react-native-awesome-slider  react-native-gesture-handler react-native-loader-kit react-native-track-player zustand expo-image react-native-image-colors
+npx expo install @react-native-async-storage/async-storage axios crypto-js expo-blur expo-constants react-native-awesome-slider  react-native-gesture-handler react-native-loader-kit react-native-track-player zustand expo-image react-native-image-colors expo-linear-gradient
 ```
 
 react-native-fast-image 可以换 expo-image
@@ -23,6 +23,7 @@ react-native-image-colors
 `npx expo run:android`
 
 临时方法：重新创建个项目，把代码配置拷贝过去
+npm start -c 和 npm run android 构建方法不一样，一个会安装 app，一个不会
 
 ### 如何 debug
 
@@ -315,7 +316,7 @@ export default function Layout() {
   return (
     <Tabs
       screenOptions={{
-        keyboardHidesTabBar: true, // 键盘弹出时隐藏 TabBar
+        tabBarHideOnKeyboard: true, // 键盘弹出时隐藏 TabBar
         tabBarStyle: {
           display: 'flex', // 确保默认显示
         },
@@ -342,9 +343,17 @@ export default function Layout() {
 
 ### 根据 light dark 调整 状态栏 、 标题栏 背景色，
 
-### 某些版本下无法安装 react-native-image-colors
+### react-native-image-colors 打包编译不通过
 
 无法提取图片主题色、平均色
+
+### react-native-track-player 启动时 "cannot read property 'capability_play' of null" 错误
+
+无解啊 官方说 track-player 不兼容 expo
+
+npm start -c 启动后进不了 track 相关页面，报错
+
+npm run android == npx expo run:android 可以启动
 
 ### 延长停留在自定义 splash 界面，然后再跳转到其他界面
 
