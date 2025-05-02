@@ -26,7 +26,7 @@ services:
       # 挂代理 方便下载无法下载的文件。之后可以在容器环境删除这个配置
       http_proxy: "http://192.168.1.130:7890"
       https_proxy: "http://192.168.1.130:7890"
-      
+
 ```
 
 ### comyui-megapak
@@ -41,6 +41,7 @@ services:
       - 28884:8188
     volumes:
       - /vol2/1000/Comfyui/comfyui-megapak:/root
+      - /vol2/1000/Comfyui/all_models:/root/Comfyui/models # 如果有多个容器，使用同一文件夹下的模型
     deploy:
       resources:
         reservations:
@@ -52,6 +53,6 @@ services:
       CLI_ARGS: ""
       PIP_INDEX_URL: "https://mirrors.cernet.edu.cn/pypi/web/simple"
       HF_ENDPOINT: "https://hf-mirror.com"
-      
+
 ```
 
