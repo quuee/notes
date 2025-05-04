@@ -3,7 +3,7 @@
 ```yaml
 services:
   comfy3d-pt25:
-    image: yanwk/comfyui-boot:comfy3d-pt25-20250503
+    image: yanwk/comfyui-boot:comfy3d-pt25-20250217 # 这个版本稳定
     container_name: comfy3d-pt25
     restart: unless-stopped
     network_mode: bridge
@@ -12,7 +12,7 @@ services:
     volumes:
       - /vol1/1000/ComfyUI/DockerAppDatas/comfyui3d-pt25/root:/root
       - /vol1/1000/ComfyUI/DockerAppDatas/comfyui3d-pt25/tmp:/tmp
-      - /vol1/1000/ComfyUI/AllModels:/root/ComfyUI/models # 如果有多个容器，使用同一文件夹下的模型
+      - /vol1/1000/ComfyUI/AllModels:/root/extra_models # 如果有多个容器，使用同一文件夹下的模型
     deploy:
       resources:
         reservations:
@@ -52,5 +52,7 @@ services:
       CLI_ARGS: ""
       PIP_INDEX_URL: "https://mirrors.cernet.edu.cn/pypi/web/simple"
       HF_ENDPOINT: "https://hf-mirror.com"
+      #http_proxy: "http://192.168.1.130:7890"
+      #https_proxy: "http://192.168.1.130:7890"
 ```
 

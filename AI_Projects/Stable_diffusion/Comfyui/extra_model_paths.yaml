@@ -1,0 +1,61 @@
+#Rename this to extra_model_paths.yaml and ComfyUI will load it
+
+#config for a1111 ui
+#all you have to do is change the base_path to where yours is installed
+# a111:
+#   base_path: path/to/stable-diffusion-webui/
+
+#   checkpoints: models/Stable-diffusion
+#   configs: models/Stable-diffusion
+#   vae: models/VAE
+#   loras: |
+#     models/Lora
+#     models/LyCORIS
+#   upscale_models: |
+#     models/ESRGAN
+#     models/RealESRGAN
+#     models/SwinIR
+#   embeddings: embeddings
+#   hypernetworks: models/hypernetworks
+#   controlnet: models/ControlNet
+
+#config for comfyui
+#your base path should be either an existing comfy install or a central folder where you store all of your models, loras, etc.
+
+comfyui:
+  base_path: /root/extra_models/
+  # You can use is_default to mark that these folders should be listed first, and used as the default dirs for eg downloads
+  #is_default: true
+  animatediff_models: models/animatediff_models/
+  animatediff_motion_lora: models/animatediff_motion_lora/
+  checkpoints: models/checkpoints/
+  clip: models/clip/
+  clip_vision: models/clip_vision/
+  configs: models/configs/
+  controlnet: models/controlnet/
+  diffusers: models/diffusers/
+  diffusion_models: |
+    models/diffusion_models
+    models/unet
+  embeddings: models/embeddings/
+  facerestore_models: models/facerestore_models/
+  gligen: models/gligen/
+  hypernetworks: models/hypernetworks/
+  insightface: models/insightface
+  loras: models/loras/
+  photomaker: models/photomaker/
+  reactor: models/reactor/
+  reswapper: models/reswapper/
+  sams: models/sams/
+  style_models: models/style_models/
+  text_encoders: models/text_encoders/
+  ultralytics: models/ultralytics/
+  unet: models/unet/
+  upscale_models: models/upscale_models/
+  vae: models/vae/
+  vae_approx: models/vae_approx/
+#other_ui:
+#    base_path: path/to/ui
+#    checkpoints: models/checkpoints
+#    gligen: models/gligen
+#    custom_nodes: path/custom_nodes
