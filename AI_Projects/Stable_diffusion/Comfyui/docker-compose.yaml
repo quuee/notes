@@ -3,15 +3,16 @@
 ```yaml
 services:
   comfy3d-pt25:
-    image: yanwk/comfyui-boot:comfy3d-pt25-20250217
+    image: yanwk/comfyui-boot:comfy3d-pt25-20250503
     container_name: comfy3d-pt25
     restart: unless-stopped
     network_mode: bridge
     ports:
       - 28883:8188
     volumes:
-      - /vol2/1000/ComfyUI/DockerAppsData/comfyui3d-pt25/root:/root
-      - /vol2/1000/ComfyUI/DockerAppsData/comfyui3d-pt25/tmp:/tmp
+      - /vol1/1000/ComfyUI/DockerAppDatas/comfyui3d-pt25/root:/root
+      - /vol1/1000/ComfyUI/DockerAppDatas/comfyui3d-pt25/tmp:/tmp
+      - /vol1/1000/ComfyUI/AllModels:/root/ComfyUI/models # 如果有多个容器，使用同一文件夹下的模型
     deploy:
       resources:
         reservations:
@@ -23,25 +24,23 @@ services:
       PIP_INDEX_URL: "https://mirrors.cernet.edu.cn/pypi/web/simple"
       HF_ENDPOINT: "https://hf-mirror.com"
       CLI_ARGS: ""
-      # 挂代理 方便下载无法下载的文件。之后可以在容器环境删除这个配置
-      http_proxy: "http://192.168.1.130:7890"
-      https_proxy: "http://192.168.1.130:7890"
-
+      #http_proxy: "http://192.168.1.130:7890"
+      #https_proxy: "http://192.168.1.130:7890"
 ```
 
 ### comyui-megapak
 ```yaml
 services:
   comfyui-cu124-megapak:
-    image: yanwk/comfyui-boot:cu124-megapak-20250317
+    image: yanwk/comfyui-boot:cu124-megapak-20250501
     container_name: comfyui-cu124-megapak
     restart: unless-stopped
     network_mode: bridge
     ports:
       - 28884:8188
     volumes:
-      - /vol2/1000/Comfyui/comfyui-megapak:/root
-      - /vol2/1000/Comfyui/all_models:/root/Comfyui/models # 如果有多个容器，使用同一文件夹下的模型
+      - /vol1/1000/ComfyUI/DockerAppDatas/comfyui-megapak:/root
+      - /vol1/1000/ComfyUI/AllModels:/root/extra_models # 如果有多个容器，使用同一文件夹下的模型
     deploy:
       resources:
         reservations:
@@ -53,6 +52,5 @@ services:
       CLI_ARGS: ""
       PIP_INDEX_URL: "https://mirrors.cernet.edu.cn/pypi/web/simple"
       HF_ENDPOINT: "https://hf-mirror.com"
-
 ```
 
