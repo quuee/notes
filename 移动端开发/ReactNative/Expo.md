@@ -33,10 +33,6 @@ npm start -c 和 npm run android 构建方法不一样，一个会安装 app，�
 
 有时候启动项目，虚拟机启动报错，真机没事
 
-### gradle 下载超时，换国内镜像
-
-在 android->gradle->wrapper->gradle-wrapper.properties 修改 distributionUrl=https\://mirrors.cloud.tencent.com/gradle/gradle-8.10.2-all.zip
-
 ### ninja: error:
 
 mkdir (/node_modules/react-native-reanimated): No such file or directory
