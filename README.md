@@ -78,3 +78,7 @@ tree [path]
 ## 使用其他字体
 
 ## 内嵌 html
+
+## vscode
+
+- 命令面板
