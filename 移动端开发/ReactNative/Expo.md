@@ -25,6 +25,16 @@ react-native-image-colors
 临时方法：重新创建个项目，把代码配置拷贝过去
 npm start -c 和 npm run android 构建方法不一样，一个会安装 app，一个不会
 
+### eas 打包 apk
+
+最好先执行`npx expo prebuild -p [ios/android] --clean`
+
+```shell
+expo login
+eas build:configure
+eas build --clear-cache --platform android --profile preview
+```
+
 ### 如何 debug
 
 终端启动项目
@@ -437,3 +447,15 @@ console.log(songInfo.title, songInfo.artist)
 ### spalsh 页面总是在最后加载
 
 讲道理不是最先加载？
+
+### 典型的状态未及时更新的问题
+
+你在使用 Zustand 状态管理时，遇到了一个典型的状态未及时更新的问题：在 play 方法中调用时发现 queue 是空数组，但预期它已经被 addSongsToQueue 填充了。这是因为 异步执行顺序和 Zustand 的同步状态更新机制之间存在错位。
+
+🧠 问题总结
+
+- 你先调用了 addSongsToQueue(songs, index)
+- 然后立即调用了 play(index)
+- 在 play 中访问了 queue[index]
+- 第一次调用时 queue 还是空数组（因为 Zustand 更新不是 React 的 useState 那样可以 await）
+- 第二次点击才拿到数据，说明状态确实已经更新了，只是不是你期望的“同步”更新
