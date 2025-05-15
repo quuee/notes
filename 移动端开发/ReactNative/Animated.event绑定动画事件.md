@@ -1,3 +1,10 @@
+## 绑定到手势相关事件
+
+在 React Native 中，你可以通过 PanResponder 或者直接监听手势相关的事件（如 onScroll、onPanResponderMove 等）来结合 Animated API 创建基于手势的动画
+
+- 使用 PanResponder
+- ScrollView 或 FlatList 的滚动事件来触发动画
+
 ## 遇到的问题：动画失效
 
 在 React Native 中，`Animated.event` 是一个用于绑定动画事件的工具。然而，当你将 `onFlatListScroll` 封装成一个函数并直接传递给 `onScroll` 时，可能会因为调用时机和上下文的问题导致失效。
