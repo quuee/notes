@@ -25,14 +25,14 @@ react-native-image-colors
 临时方法：重新创建个项目，把代码配置拷贝过去
 npm start -c 和 npm run android 构建方法不一样，一个会安装 app，一个不会
 
-### eas 打包 apk
+### eas 在线打包 apk
 
 最好先执行`npx expo prebuild -p [ios/android] --clean`
 
 ```shell
 expo login
 eas build:configure
-eas build --clear-cache --platform android --profile preview
+eas build --platform android --profile preview
 ```
 
 ### 如何 debug
@@ -42,15 +42,6 @@ eas build --clear-cache --platform android --profile preview
 终端出现链接，点击链接
 
 有时候启动项目，虚拟机启动报错，真机没事
-
-### ninja: error:
-
-mkdir (/node_modules/react-native-reanimated): No such file or directory
-换一个短路径目录
-
-### requireNativeComponent: “FastImageView” was not found in the UIManager in react native
-
-需要重新编译
 
 ### 在 Expo 中使用 expo-router 的 Tabs 布局 结合 expo-blur 时，如果出现上下两个 Tab 栏（重复渲染），通常是因为布局层级冲突或样式未正确隔离 半透明黑色毛玻璃效果
 
@@ -347,107 +338,6 @@ export default function Layout() {
 }
 ```
 
-### 根据 light dark 调整 状态栏 、 标题栏 背景色，
-
-### react-native-image-colors 打包编译不通过
-
-无法提取图片主题色、平均色
-
-### react-native-track-player 启动时 "cannot read property 'capability_play' of null" 错误
-
-无解啊 官方说 track-player 不兼容 expo
-
-npm start -c 启动后进不了 track 相关页面，报错
-
-npm run android == npx expo run:android 可以启动
-
-### 延长停留在自定义 splash 界面，然后再跳转到其他界面
-
-### 对接服务器登录 状态管理
-
-#### navidrome 服务器
-
-#### navidrome 播放
-
-`http://your-navidrome-server/rest/stream?id={songId}&u={username}&t={token}&s={salt}&v=1.16.0&c=MyApp`
-
-- id: 歌曲 ID（从 Navidrome API 获取）
-- u: 用户名
-- t: 认证 Token（通过密码生成）
-- s: Salt（随机字符串）
-- v: Navidrome API 版本（如 1.16.0）
-- c: 客户端名称（如 MyApp）
-
-生成 token salt
-
-```ts
-import { encode } from 'base-64'
-import CryptoJS from 'crypto-js'
-
-function generateNavidromeAuth(username, password) {
-  const salt = Math.random().toString(36).substring(2)
-  const token = CryptoJS.MD5(password + salt).toString()
-  return { username, token, salt }
-}
-
-const { username, token, salt } = generateNavidromeAuth(
-  'your-username',
-  'your-password'
-)
-```
-
-添加 Navidrome 歌曲到播放队列
-
-```ts
-async function playNavidromeSong(songId) {
-  const { username, token, salt } = generateNavidromeAuth(
-    'your-username',
-    'your-password'
-  )
-  const streamUrl = `http://your-navidrome-server/rest/stream?id=${songId}&u=${username}&t=${token}&s=${salt}&v=1.16.0&c=MyApp`
-
-  // 重置队列并添加歌曲
-  await TrackPlayer.reset()
-  await TrackPlayer.add({
-    id: songId,
-    url: streamUrl,
-    title: '歌曲标题', // 从 Navidrome API 获取
-    artist: '艺术家', // 从 Navidrome API 获取
-    artwork: 'http://your-navidrome-server/cover.jpg', // 封面图
-  })
-  await TrackPlayer.play()
-}
-
-// 调用示例
-playNavidromeSong('song-123').catch(console.error)
-```
-
-获取歌曲元数据（可选）
-
-```ts
-async function getSongInfo(songId) {
-  const { username, token, salt } = generateNavidromeAuth(
-    'your-username',
-    'your-password'
-  )
-  const apiUrl = `http://your-navidrome-server/rest/getSong?id=${songId}&u=${username}&t=${token}&s=${salt}&v=1.16.0&c=MyApp`
-
-  const response = await fetch(apiUrl)
-  const data = await response.json()
-  return data
-}
-
-// 使用示例
-const songInfo = await getSongInfo('song-123')
-console.log(songInfo.title, songInfo.artist)
-```
-
-### 获取本地音乐
-
-### spalsh 页面总是在最后加载
-
-讲道理不是最先加载？
-
 ### 典型的状态未及时更新的问题
 
 你在使用 Zustand 状态管理时，遇到了一个典型的状态未及时更新的问题：在 play 方法中调用时发现 queue 是空数组，但预期它已经被 addSongsToQueue 填充了。这是因为 异步执行顺序和 Zustand 的同步状态更新机制之间存在错位。
@@ -459,3 +349,14 @@ console.log(songInfo.title, songInfo.artist)
 - 在 play 中访问了 queue[index]
 - 第一次调用时 queue 还是空数组（因为 Zustand 更新不是 React 的 useState 那样可以 await）
 - 第二次点击才拿到数据，说明状态确实已经更新了，只是不是你期望的“同步”更新
+
+### eas build 无法构建 apk，只能手动打包(未试过)
+
+1. Node.js、Java JDK、Android Studio、ANDROID_HOME，确保能够通过命令行运行 adb、gradlew
+2. npm install expo-cli
+
+- 执行 expo eject 这个命令会生成 iOS 和 Android 的原生项目文件。请注意，一旦执行此操作，你就不能再直接使用某些 Expo 提供的便捷功能和服务，除非你回退这次操作或自己手动维护这些变化。有风险！
+
+3. 设置 Android 签名密钥 命苦：
+4. 修改 android/app/build.gradle：在 buildTypes 下的 release 块中添加你的签名配置
+5. 未签名`./gradlew assembleRelease --project-dir=android`，已签名`./gradlew bundleRelease --project-dir=android`
