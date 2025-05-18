@@ -34,9 +34,9 @@ source /etc/profile # 还是重启好用
 1. 需要先到 android studio 官网下载 commandlinetools-linux
 2. 创建 android_sdk 目录，将 commandlinetools-linux 解压到此
 3. 进入 commandline-tools/bin 目录
-4. `./sdkmanager --sdk_root=/opt/android-sdk/ --list`查看所有可下载工具，`--sdk_root=`指定要下载的目录
+4. `./sdkmanager --sdk_root=/home/vvv/android_sdk/ --list`查看所有可下载工具，`--sdk_root=`指定要下载的目录
 
-5. 安装"platforms;android-33" 、 "platform-tools" 、"build-tools;33.0.3"
+5. 安装"platforms;android-33" 、 "platform-tools" 、"build-tools;33.0.3" `./sdkmanager --sdk_root=/home/vvv/android_sdk/ "platforms;android-33"` 后面替换下
 
 6. 配置 android_home（也可以一开始配置）
 
